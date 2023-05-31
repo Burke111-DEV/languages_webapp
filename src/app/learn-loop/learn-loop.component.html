@@ -1,0 +1,26 @@
+<div class="learn-container mat-app-background" [class.mobile]="session.isMobile">
+    <div class="learn-box fade-in">
+        <div class="top-box top-buttons-container">
+            <mat-icon [class.inactive]="!timerActive" (click)="autoWordTimerToggle()" class="top-button" [matTooltip]="timerActive ? 'Stop auto-word timer' : 'Start auto-word timer'" [matTooltipShowDelay]="650">timer</mat-icon>
+            <mat-icon [class.inactive]="!speechActive" (click)="autoSpeechToggle()" class="top-button" [matTooltip]="speechActive ? 'Turn off auto-speech' : 'Turn on auto-speech'" [matTooltipShowDelay]="650">{{ speechActive ? 'record_voice_over' : 'voice_over_off' }}</mat-icon>
+        </div>
+
+        <mat-icon [class.inactive]="list_pos == 0" class="nav-btn nav-left" (click)="move(0)">navigate_before</mat-icon>
+        <mat-icon [class.inactive]="list_pos == list_len" class="nav-btn nav-right" (click)="move(1)">navigate_next</mat-icon>
+
+        <div class="left-box side-boxes">
+            <div class="text-box">{{eng | titlecase}}</div>
+            <mat-icon class="speech-btn" (click)="speech(0)">volume_up</mat-icon>
+        </div>
+
+        <div class="right-box side-boxes">
+            <div *ngFor="let word of ita" class="text-box">{{word | titlecase}}</div>
+            <mat-icon class="speech-btn" (click)="speech(1)">volume_up</mat-icon>
+        </div>
+
+        <div class="bottom-box">
+            <div class="timer-div" [style.width.%]="timerWidth"></div>
+            <div class="timer-val">{{timerVal | date:'mm:ss'}}</div>
+        </div>
+    </div>
+</div>
